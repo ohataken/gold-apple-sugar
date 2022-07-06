@@ -34,10 +34,6 @@ server.get('/oauth2/callback', async (request, reply) => {
   return "hogehoge";
 });
 
-server.get('/ping', async (request, reply) => {
-  return { pong: 'it worked!' };
-});
-
 server.get('/', (request, reply) => {
   const stream = fs.createReadStream(__dirname + '/index.html', 'utf8');
   reply.send(stream);
