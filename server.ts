@@ -14,6 +14,16 @@ server.get('/oauth2/redirect', (request, reply) => {
   reply.redirect(302, url);
 });
 
+server.get('/oauth2/callback', async (request, reply) => {
+  const query = request.query as any;
+  const client = createGoogleOAuth2Client();
+  const { tokens } = await client.getToken(query.code);
+
+  client.setCredentials(tokens);
+
+  return "hogehoge";
+});
+
 server.get('/ping', async (request, reply) => {
   return { pong: 'it worked!' };
 });
