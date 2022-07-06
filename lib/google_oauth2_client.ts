@@ -9,3 +9,10 @@ export function createGoogleOAuth2Client () {
   return client;
 }
 
+export function getGoogleOAuth2Scopes () {
+  return [
+    'https://www.googleapis.com/auth/script.projects',
+    'https://www.googleapis.com/auth/script.deployments',
+    'https://www.googleapis.com/auth/script.processes',
+  ];
+}
