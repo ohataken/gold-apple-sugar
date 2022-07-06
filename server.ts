@@ -1,4 +1,5 @@
 import fs from 'fs';
+import { google } from 'googleapis';
 import { createGoogleOAuth2Client, getGoogleOAuth2Scopes } from './lib/google_oauth2_client';
 import Fastify, { FastifyInstance, RouteShorthandOptions } from 'fastify';
 
@@ -20,6 +21,15 @@ server.get('/oauth2/callback', async (request, reply) => {
   const { tokens } = await client.getToken(query.code);
 
   client.setCredentials(tokens);
+
+  const oauth2 = google.oauth2({
+    version: 'v2',
+    auth: client,
+  });
+
+  const userinfo = await oauth2.userinfo.get({});
+
+  console.log(userinfo.data);
 
   return "hogehoge";
 });
