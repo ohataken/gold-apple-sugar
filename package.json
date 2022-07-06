@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/ohataken/gold-apple-sugar#readme",
   "dependencies": {
+    "ts-node": "^10.8.2",
     "typescript": "^4.7.4"
   }
 }
