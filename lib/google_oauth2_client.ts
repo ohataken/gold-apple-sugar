@@ -11,6 +11,8 @@ export function createGoogleOAuth2Client () {
 
 export function getGoogleOAuth2Scopes () {
   return [
+    'https://www.googleapis.com/auth/userinfo.email',
+    'https://www.googleapis.com/auth/userinfo.profile',
     'https://www.googleapis.com/auth/script.projects',
     'https://www.googleapis.com/auth/script.deployments',
     'https://www.googleapis.com/auth/script.processes',
