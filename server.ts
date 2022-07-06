@@ -6,4 +6,4 @@ server.get('/ping', async (request, reply) => {
   return { pong: 'it worked!' };
 });
 
-server.listen({ port: parseInt(process.env.PORT || "3000") });
+server.listen({ port: parseInt(process.env.PORT || "3000"), host: "0.0.0.0" });
