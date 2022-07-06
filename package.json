@@ -16,6 +16,9 @@
     "url": "https://github.com/ohataken/gold-apple-sugar/issues"
   },
   "homepage": "https://github.com/ohataken/gold-apple-sugar#readme",
+  "engines": {
+    "node": "18.x"
+  },
   "dependencies": {
     "fastify": "^4.2.0",
     "ts-node": "^10.8.2",
