@@ -2,8 +2,13 @@ import fs from 'fs';
 import { google } from 'googleapis';
 import { createGoogleOAuth2Client, getGoogleOAuth2Scopes } from './lib/google_oauth2_client';
 import Fastify, { FastifyInstance, RouteShorthandOptions } from 'fastify';
+import FastifyRedis from '@fastify/redis';
 
 const server: FastifyInstance = Fastify({});
+
+server.register(FastifyRedis, {
+  url: process.env.REDIS_URL
+});
 
 server.get('/oauth2/redirect', (request, reply) => {
   const client = createGoogleOAuth2Client();
