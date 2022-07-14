@@ -4,6 +4,7 @@ import { google } from 'googleapis';
 import { createGoogleOAuth2Client, getGoogleOAuth2Scopes } from './lib/google_oauth2_client';
 import Fastify, { FastifyInstance, RouteShorthandOptions } from 'fastify';
 import FastifyRedis from '@fastify/redis';
+import { createGoogleAppsScriptClientViaRedis } from './lib/create_google_apps_script_client_via_redis';
 
 const server: FastifyInstance = Fastify({});
 
@@ -53,6 +54,17 @@ server.get('/oauth2/callback', async (request, reply) => {
   });
 
   return key;
+});
+
+server.get('/api/scripts/projects/:projectId', async (request, reply) => {
+  const { projectId }: any = request.params;
+  const key :any = request.headers["api_key"];
+  const { redis } = server;
+
+  const script = await createGoogleAppsScriptClientViaRedis(redis, key);
+  const content = await script.projects.get({ scriptId: projectId });
+
+  reply.send(JSON.stringify(content));
 });
 
 server.get('/', (request, reply) => {
