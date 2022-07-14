@@ -52,7 +52,7 @@ server.get('/oauth2/callback', async (request, reply) => {
     });
   });
 
-  return "hogehoge";
+  return key;
 });
 
 server.get('/', (request, reply) => {
