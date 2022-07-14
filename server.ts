@@ -67,6 +67,17 @@ server.get('/api/scripts/projects/:projectId', async (request, reply) => {
   reply.send(JSON.stringify(content));
 });
 
+server.get('/api/scripts/projects/:projectId/metrics', async (request, reply) => {
+  const { projectId }: any = request.params;
+  const key :any = request.headers["api_key"];
+  const { redis } = server;
+
+  const script = await createGoogleAppsScriptClientViaRedis(redis, key);
+  const content = await script.projects.getMetrics({ scriptId: projectId, metricsGranularity: 'DAILY' });
+
+  reply.send(JSON.stringify(content));
+});
+
 server.get('/', (request, reply) => {
   const stream = fs.createReadStream(__dirname + '/index.html', 'utf8');
   reply.send(stream);
