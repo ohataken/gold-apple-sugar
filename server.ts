@@ -1,4 +1,5 @@
 import fs from 'fs';
+import crypto from 'crypto';
 import { google } from 'googleapis';
 import { createGoogleOAuth2Client, getGoogleOAuth2Scopes } from './lib/google_oauth2_client';
 import Fastify, { FastifyInstance, RouteShorthandOptions } from 'fastify';
@@ -24,6 +25,8 @@ server.get('/oauth2/callback', async (request, reply) => {
   const query = request.query as any;
   const client = createGoogleOAuth2Client();
   const { tokens } = await client.getToken(query.code);
+  const { redis } = server;
+  const key = crypto.randomBytes(16).toString("hex");
 
   client.setCredentials(tokens);
 
@@ -35,6 +38,19 @@ server.get('/oauth2/callback', async (request, reply) => {
   const userinfo = await oauth2.userinfo.get({});
 
   console.log(userinfo.data);
+
+  const hash = {
+    id: userinfo.data.id || "",
+    email: userinfo.data.email || "",
+    access_token: tokens.access_token || "",
+    id_token: tokens.id_token || "",
+  };
+
+  await new Promise((resolve, reject) => {
+    return redis.hset(key, hash, (err, val) => {
+      return err ? reject(err) : resolve(val);
+    });
+  });
 
   return "hogehoge";
 });
