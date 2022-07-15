@@ -124,6 +124,19 @@ server.put('/api/scripts/projects/:projectId/copyfrom', async (request, reply) =
   reply.send(JSON.stringify(content));
 });
 
+server.get('/api/scripts/projects/:projectId/processes', async (request, reply) => {
+  const { projectId }: any = request.params;
+  const key :any = request.headers["api_key"];
+  const { redis } = server;
+
+  const script = await createGoogleAppsScriptClientViaRedis(redis, key);
+
+  // https://googleapis.dev/nodejs/googleapis/latest/script/classes/Resource$Processes.html
+  const content = await script.processes.listScriptProcesses({ scriptId: projectId });
+
+  reply.send(JSON.stringify(content));
+});
+
 server.get('/', (request, reply) => {
   const stream = fs.createReadStream(__dirname + '/index.html', 'utf8');
   reply.send(stream);
