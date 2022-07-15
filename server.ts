@@ -95,8 +95,21 @@ server.get('/api/scripts/projects/:projectId/content', async (request, reply) =>
   reply.send(JSON.stringify(content));
 });
 
-server.put('/api/scripts/:scriptId/copyfrom', async (request, reply) => {
-  return "PUT /api/scripts/:scriptId/copyfrom"
+server.put('/api/scripts/projects/:projectId/copyfrom', async (request, reply) => {
+  const { projectId }: any = request.params;
+  const { originId }: any = request.body;
+  const key :any = request.headers["api_key"];
+  const { redis } = server;
+
+  const script = await createGoogleAppsScriptClientViaRedis(redis, key);
+
+  // https://googleapis.dev/nodejs/googleapis/latest/script/classes/Resource$Projects.html
+  const content = await script.projects.getContent({ scriptId: originId });
+
+  // https://googleapis.dev/nodejs/googleapis/latest/script/classes/Resource$Projects.html
+  await script.projects.updateContent({ scriptId: projectId, requestBody: { files: content.data.files } });
+
+  reply.send(JSON.stringify(content));
 });
 
 server.get('/', (request, reply) => {
