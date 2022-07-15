@@ -56,6 +56,18 @@ server.get('/oauth2/callback', async (request, reply) => {
   return key;
 });
 
+server.get('/api/scripts/processes', async (request, reply) => {
+  const key :any = request.headers["api_key"];
+  const { redis } = server;
+
+  const script = await createGoogleAppsScriptClientViaRedis(redis, key);
+
+  // https://googleapis.dev/nodejs/googleapis/latest/script/classes/Resource$Processes.html
+  const content = await script.processes.list({  });
+
+  reply.send(JSON.stringify(content));
+});
+
 server.get('/api/scripts/projects/:projectId', async (request, reply) => {
   const { projectId }: any = request.params;
   const key :any = request.headers["api_key"];
