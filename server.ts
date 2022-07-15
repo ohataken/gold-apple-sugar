@@ -65,7 +65,7 @@ server.get('/api/scripts/processes', async (request, reply) => {
   // https://googleapis.dev/nodejs/googleapis/latest/script/classes/Resource$Processes.html
   const content = await script.processes.list({  });
 
-  reply.send(JSON.stringify(content));
+  reply.send(JSON.stringify(content.data));
 });
 
 server.get('/api/scripts/projects/:projectId', async (request, reply) => {
@@ -78,7 +78,7 @@ server.get('/api/scripts/projects/:projectId', async (request, reply) => {
   // https://googleapis.dev/nodejs/googleapis/latest/script/classes/Resource$Projects.html
   const content = await script.projects.get({ scriptId: projectId });
 
-  reply.send(JSON.stringify(content));
+  reply.send(JSON.stringify(content.data));
 });
 
 server.get('/api/scripts/projects/:projectId/metrics', async (request, reply) => {
@@ -91,7 +91,7 @@ server.get('/api/scripts/projects/:projectId/metrics', async (request, reply) =>
   // https://googleapis.dev/nodejs/googleapis/latest/script/classes/Resource$Projects.html
   const content = await script.projects.getMetrics({ scriptId: projectId, metricsGranularity: 'DAILY' });
 
-  reply.send(JSON.stringify(content));
+  reply.send(JSON.stringify(content.data));
 });
 
 server.get('/api/scripts/projects/:projectId/content', async (request, reply) => {
@@ -104,7 +104,7 @@ server.get('/api/scripts/projects/:projectId/content', async (request, reply) =>
   // https://googleapis.dev/nodejs/googleapis/latest/script/classes/Resource$Projects.html
   const content = await script.projects.getContent({ scriptId: projectId });
 
-  reply.send(JSON.stringify(content));
+  reply.send(JSON.stringify(content.data));
 });
 
 server.put('/api/scripts/projects/:projectId/copyfrom', async (request, reply) => {
@@ -121,7 +121,7 @@ server.put('/api/scripts/projects/:projectId/copyfrom', async (request, reply) =
   // https://googleapis.dev/nodejs/googleapis/latest/script/classes/Resource$Projects.html
   await script.projects.updateContent({ scriptId: projectId, requestBody: { files: content.data.files } });
 
-  reply.send(JSON.stringify(content));
+  reply.send(JSON.stringify(content.data));
 });
 
 server.get('/api/scripts/projects/:projectId/processes', async (request, reply) => {
@@ -134,7 +134,7 @@ server.get('/api/scripts/projects/:projectId/processes', async (request, reply) 
   // https://googleapis.dev/nodejs/googleapis/latest/script/classes/Resource$Processes.html
   const content = await script.processes.listScriptProcesses({ scriptId: projectId });
 
-  reply.send(JSON.stringify(content));
+  reply.send(JSON.stringify(content.data));
 });
 
 server.post('/api/scripts/projects/:projectId/functions/:functionName/run', async (request, reply) => {
@@ -154,7 +154,7 @@ server.post('/api/scripts/projects/:projectId/functions/:functionName/run', asyn
     },
   });
 
-  reply.send(JSON.stringify(content));
+  reply.send(JSON.stringify(content.data));
 });
 
 server.get('/', (request, reply) => {
