@@ -56,7 +56,7 @@ server.get('/oauth2/callback', async (request, reply) => {
   return key;
 });
 
-server.get('/api/scripts/processes', async (request, reply) => {
+server.get('/api/processes', async (request, reply) => {
   const key :any = request.headers["api_key"];
   const { redis } = server;
 
@@ -68,7 +68,7 @@ server.get('/api/scripts/processes', async (request, reply) => {
   reply.send(JSON.stringify(content.data));
 });
 
-server.get('/api/scripts/projects/:projectId', async (request, reply) => {
+server.get('/api/projects/:projectId', async (request, reply) => {
   const { projectId }: any = request.params;
   const key :any = request.headers["api_key"];
   const { redis } = server;
@@ -81,7 +81,7 @@ server.get('/api/scripts/projects/:projectId', async (request, reply) => {
   reply.send(JSON.stringify(content.data));
 });
 
-server.get('/api/scripts/projects/:projectId/metrics', async (request, reply) => {
+server.get('/api/projects/:projectId/metrics', async (request, reply) => {
   const { projectId }: any = request.params;
   const key :any = request.headers["api_key"];
   const { redis } = server;
@@ -94,7 +94,7 @@ server.get('/api/scripts/projects/:projectId/metrics', async (request, reply) =>
   reply.send(JSON.stringify(content.data));
 });
 
-server.get('/api/scripts/projects/:projectId/content', async (request, reply) => {
+server.get('/api/projects/:projectId/content', async (request, reply) => {
   const { projectId }: any = request.params;
   const key :any = request.headers["api_key"];
   const { redis } = server;
@@ -107,7 +107,7 @@ server.get('/api/scripts/projects/:projectId/content', async (request, reply) =>
   reply.send(JSON.stringify(content.data));
 });
 
-server.put('/api/scripts/projects/:projectId/copyfrom', async (request, reply) => {
+server.put('/api/projects/:projectId/copyfrom', async (request, reply) => {
   const { projectId }: any = request.params;
   const { originId }: any = request.body;
   const key :any = request.headers["api_key"];
@@ -124,7 +124,7 @@ server.put('/api/scripts/projects/:projectId/copyfrom', async (request, reply) =
   reply.send(JSON.stringify(content.data));
 });
 
-server.get('/api/scripts/projects/:projectId/processes', async (request, reply) => {
+server.get('/api/projects/:projectId/processes', async (request, reply) => {
   const { projectId }: any = request.params;
   const key :any = request.headers["api_key"];
   const { redis } = server;
@@ -137,7 +137,7 @@ server.get('/api/scripts/projects/:projectId/processes', async (request, reply) 
   reply.send(JSON.stringify(content.data));
 });
 
-server.post('/api/scripts/projects/:projectId/functions/:functionName/run', async (request, reply) => {
+server.post('/api/projects/:projectId/functions/:functionName/run', async (request, reply) => {
   const { projectId, functionName }: any = request.params;
   const key :any = request.headers["api_key"];
   const { redis } = server;
