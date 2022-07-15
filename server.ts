@@ -62,6 +62,8 @@ server.get('/api/scripts/projects/:projectId', async (request, reply) => {
   const { redis } = server;
 
   const script = await createGoogleAppsScriptClientViaRedis(redis, key);
+
+  // https://googleapis.dev/nodejs/googleapis/latest/script/classes/Resource$Projects.html
   const content = await script.projects.get({ scriptId: projectId });
 
   reply.send(JSON.stringify(content));
@@ -73,6 +75,8 @@ server.get('/api/scripts/projects/:projectId/metrics', async (request, reply) =>
   const { redis } = server;
 
   const script = await createGoogleAppsScriptClientViaRedis(redis, key);
+
+  // https://googleapis.dev/nodejs/googleapis/latest/script/classes/Resource$Projects.html
   const content = await script.projects.getMetrics({ scriptId: projectId, metricsGranularity: 'DAILY' });
 
   reply.send(JSON.stringify(content));
@@ -84,6 +88,8 @@ server.get('/api/scripts/projects/:projectId/content', async (request, reply) =>
   const { redis } = server;
 
   const script = await createGoogleAppsScriptClientViaRedis(redis, key);
+
+  // https://googleapis.dev/nodejs/googleapis/latest/script/classes/Resource$Projects.html
   const content = await script.projects.getContent({ scriptId: projectId });
 
   reply.send(JSON.stringify(content));
