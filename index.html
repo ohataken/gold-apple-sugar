@@ -30,5 +30,45 @@
       <h1>gold-apple-sugar</h1>
       <a href="/oauth2/redirect" class="btn btn-primary">redirect</a>
     </div>
+    <div class="container my-4">
+      <h3>GET /api/processes</h3>
+      <p><a href="https://developers.google.com/apps-script/api/reference/rest/v1/processes/list">processes.list</a></p>
+      <pre>curl -H "API_KEY: xxxxxxxx" -X GET https://gold-apple-sugar.herokuapp.com/api/processes</pre>
+    </div>
+    <div class="container my-4">
+      <h3>GET /api/projects/:projectId</h3>
+      <p><a href="https://developers.google.com/apps-script/api/reference/rest/v1/projects/get">projects.get</a></p>
+      <pre>curl -H "API_KEY: xxxxxxxx" -X GET https://gold-apple-sugar.herokuapp.com/api/projects/1s71TflByQwtzM9ZWf1fQ0RQmWkEwjhXz0zSRWIlOZlX5gH-Q9IA8Kpt2</pre>
+    </div>
+    <div class="container my-4">
+      <h3>GET /api/projects/:projectId/metrics</h3>
+      <p><a href="https://developers.google.com/apps-script/api/reference/rest/v1/projects/getMetrics">projects.getMetrics</a></p>
+      <pre>curl -H "API_KEY: xxxxxxxx" -X GET https://gold-apple-sugar.herokuapp.com/api/projects/1s71TflByQwtzM9ZWf1fQ0RQmWkEwjhXz0zSRWIlOZlX5gH-Q9IA8Kpt2/metrics</pre>
+    </div>
+    <div class="container my-4">
+      <h3>GET /api/projects/:projectId/content</h3>
+      <p><a href="https://developers.google.com/apps-script/api/reference/rest/v1/projects/getContent">projects.getContent</a></p>
+      <pre>curl -H "API_KEY: xxxxxxxx" -X GET https://gold-apple-sugar.herokuapp.com/api/projects/1s71TflByQwtzM9ZWf1fQ0RQmWkEwjhXz0zSRWIlOZlX5gH-Q9IA8Kpt2/content</pre>
+    </div>
+    <div class="container my-4">
+      <h3>PUT /api/projects/:projectId/copyfrom</h3>
+      <p><a href="https://developers.google.com/apps-script/api/reference/rest/v1/projects/getContent">projects.getContent</a> and <a href="https://developers.google.com/apps-script/api/reference/rest/v1/projects/updateContent">projects.updateContent</a></p>
+      <pre>curl -H "API_KEY: xxxxxxxx" -d '{ "originId": "abcdef" }' -X PUT https://gold-apple-sugar.herokuapp.com/api/projects/1s71TflByQwtzM9ZWf1fQ0RQmWkEwjhXz0zSRWIlOZlX5gH-Q9IA8Kpt2/copyfrom</pre>
+    </div>
+    <div class="container my-4">
+      <h3>GET /api/projects/:projectId/processes</h3>
+      <p><a href="https://developers.google.com/apps-script/api/reference/rest/v1/processes/listScriptProcesses">processes.listScriptProcesses</a></p>
+      <pre>curl -H "API_KEY: xxxxxxxx" -X GET https://gold-apple-sugar.herokuapp.com/api/projects/1s71TflByQwtzM9ZWf1fQ0RQmWkEwjhXz0zSRWIlOZlX5gH-Q9IA8Kpt2/processes</pre>
+    </div>
+    <div class="container my-4">
+      <h3>GET /api/processes</h3>
+      <p><a href="https://developers.google.com/apps-script/api/reference/rest/v1/processes/list">processes.list</a></p>
+      <pre>curl -H "API_KEY: xxxxxxxx" -X GET https://gold-apple-sugar.herokuapp.com/api/processes</pre>
+    </div>
+    <div class="container my-4">
+      <h3>GET /api/processes</h3>
+      <p><a href="https://developers.google.com/apps-script/api/reference/rest/v1/processes/list">processes.list</a></p>
+      <pre>curl -H "API_KEY: xxxxxxxx" -X GET https://gold-apple-sugar.herokuapp.com/api/processes</pre>
+    </div>
   </body>
 </html>
